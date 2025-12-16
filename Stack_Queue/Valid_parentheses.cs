@@ -16,10 +16,15 @@ public static bool IsValid(string s)
 {
     var stack = new Stack<char>();
 
+    Console.WriteLine($"s : {s}");
+    var count = 0;
     foreach (var c in s)
     {
+        count += 1;
+        Console.WriteLine($"c: {c}");
         if (c == '(' || c == '{' || c == '[')
         {
+            Console.WriteLine("stack.Push");
             stack.Push(c);
         }
         else
@@ -28,11 +33,13 @@ public static bool IsValid(string s)
                 return false;
 
             var top = stack.Pop();
-
+            Console.WriteLine($"top: {top}");
+            Console.WriteLine($"c: {c}");
             if ((c == ')' && top != '(') ||
                 (c == '}' && top != '{') ||
                 (c == ']' && top != '['))
             {
+                Console.WriteLine("return false");
                 return false;
             }
         }
